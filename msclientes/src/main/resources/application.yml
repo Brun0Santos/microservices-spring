@@ -3,7 +3,7 @@ spring:
     name: msclientes
 
 server:
-  port: 51289
+  port: 0
 
 eureka:
   client:
