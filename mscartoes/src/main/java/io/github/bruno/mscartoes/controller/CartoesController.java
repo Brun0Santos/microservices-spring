@@ -32,7 +32,6 @@ public class CartoesController {
     @PostMapping
     public ResponseEntity cadastrar(@RequestBody CartaoDto cartaoDto) {
         CartaoEntity cartao = CartaoDto.toModel(cartaoDto);
-        System.out.println(cartao);
         cartaoService.salvarCartao(cartao);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
