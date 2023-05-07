@@ -18,4 +18,19 @@ public class CartaoDto {
         return new CartaoEntity(cartaoDto.nome, cartaoDto.bandeira, cartaoDto.renda, cartaoDto.limite);
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public BandeiraCartao getBandeira() {
+        return bandeira;
+    }
+
+    public BigDecimal getRenda() {
+        return renda;
+    }
+
+    public BigDecimal getLimite() {
+        return limite;
+    }
 }

@@ -19,9 +19,8 @@ public class CartaoService {
         return repository.save(cartao);
     }
 
-    public List<CartaoEntity> getCartoesRendaMenorIgual(Integer renda) {
+    public List<CartaoEntity> getCartoesRendaMenorIgual(Long renda) {
         BigDecimal rendaBigDecimal = BigDecimal.valueOf(renda);
         return repository.findByRendaLessThanEqual(rendaBigDecimal);
     }
-
 }

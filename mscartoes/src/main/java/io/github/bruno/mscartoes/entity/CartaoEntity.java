@@ -26,4 +26,20 @@ public class CartaoEntity {
         this.renda = renda;
         this.limiteCartao = limiteCartao;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public BandeiraCartao getBandeiraCartao() {
+        return bandeiraCartao;
+    }
+
+    public BigDecimal getRenda() {
+        return renda;
+    }
+
+    public BigDecimal getLimiteCartao() {
+        return limiteCartao;
+    }
 }
