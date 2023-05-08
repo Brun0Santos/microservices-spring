@@ -1,13 +1,12 @@
 package io.github.bruno.msavaliadorcredito.controller;
 
+import io.github.bruno.msavaliadorcredito.dto.RetornoAvaliacaoDto;
+import io.github.bruno.msavaliadorcredito.entity.DadosAvaliacaoEntity;
 import io.github.bruno.msavaliadorcredito.entity.SituacaoClienteEntity;
 import io.github.bruno.msavaliadorcredito.service.AvaliadorCreditoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/avaliacoes-credito")
@@ -25,5 +24,11 @@ public class AvaliadorCreditoController {
     public ResponseEntity<SituacaoClienteEntity> consultarSituacaoCliente(@RequestParam String cpf) {
         SituacaoClienteEntity situacaoCliente = avaliadorCreditoService.obterSituacaoCliente(cpf);
         return ResponseEntity.ok().body(situacaoCliente);
+    }
+
+    @PostMapping
+    public ResponseEntity realizarAvaliacao(@RequestBody DadosAvaliacaoEntity dados) {
+        RetornoAvaliacaoDto retornoAvaliacaoDto = avaliadorCreditoService.realizarAvaliacao(dados.getCpf(), dados.getRenda());
+        return ResponseEntity.ok().body(retornoAvaliacaoDto);
     }
 }
