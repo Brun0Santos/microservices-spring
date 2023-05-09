@@ -1,4 +1,4 @@
-package io.github.bruno.msavaliadorcredito.entity;
+package io.github.bruno.msavaliadorcredito.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

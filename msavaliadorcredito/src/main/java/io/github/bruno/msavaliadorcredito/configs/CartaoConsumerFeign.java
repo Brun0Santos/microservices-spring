@@ -1,8 +1,7 @@
-package io.github.bruno.msavaliadorcredito.config;
+package io.github.bruno.msavaliadorcredito.configs;
 
-import io.github.bruno.msavaliadorcredito.entity.CartaoClienteEntity;
-import io.github.bruno.msavaliadorcredito.entity.CartaoEntity;
-import io.github.bruno.msavaliadorcredito.entity.DadosClienteEntity;
+import io.github.bruno.msavaliadorcredito.entities.CartaoClienteEntity;
+import io.github.bruno.msavaliadorcredito.entities.CartaoEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
