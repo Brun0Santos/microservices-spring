@@ -6,6 +6,7 @@ import io.github.bruno.mscartoes.enums.BandeiraCartao;
 import java.math.BigDecimal;
 
 public class CartaoDto {
+    private Integer id;
     private String nome;
     private BandeiraCartao bandeira;
     private BigDecimal renda;
@@ -15,7 +16,7 @@ public class CartaoDto {
     }
 
     public static CartaoEntity toModel(CartaoDto cartaoDto) {
-        return new CartaoEntity(cartaoDto.nome, cartaoDto.bandeira, cartaoDto.renda, cartaoDto.limite);
+        return new CartaoEntity(cartaoDto.id ,cartaoDto.nome, cartaoDto.bandeira, cartaoDto.renda, cartaoDto.limite);
     }
 
     public String getNome() {

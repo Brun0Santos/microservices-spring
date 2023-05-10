@@ -15,6 +15,8 @@ public class PublisherRabbitMQ {
 
     public void sendToExchangeProduct(DadosSolicitacaoCartaoEntity dados) throws JsonProcessingException {
         String dadosConvertidos = ConvertEntityToJsonUtil.convertEntityToJson(dados);
+        System.out.println("dados convertidos");
+        System.out.println(dadosConvertidos);
         rabbitTemplate.convertAndSend(RabbitMQConfig.EXG_NAME, RabbitMQConfig.ROUTING_KEY, dadosConvertidos);
     }
 }

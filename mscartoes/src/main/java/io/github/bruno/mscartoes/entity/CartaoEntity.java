@@ -20,11 +20,16 @@ public class CartaoEntity {
     public CartaoEntity() {
     }
 
-    public CartaoEntity(String nome, BandeiraCartao bandeiraCartao, BigDecimal renda, BigDecimal limiteCartao) {
+    public CartaoEntity(Integer id, String nome, BandeiraCartao bandeiraCartao, BigDecimal renda, BigDecimal limiteCartao) {
+        this.id = id;
         this.nome = nome;
         this.bandeiraCartao = bandeiraCartao;
         this.renda = renda;
         this.limiteCartao = limiteCartao;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getNome() {

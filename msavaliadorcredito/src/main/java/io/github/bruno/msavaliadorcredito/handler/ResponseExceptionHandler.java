@@ -2,8 +2,9 @@ package io.github.bruno.msavaliadorcredito.handler;
 
 import feign.FeignException;
 import io.github.bruno.msavaliadorcredito.exceptions.DataNotFoundException;
-import io.github.bruno.msavaliadorcredito.exceptions.ResponseException;
+import io.github.bruno.msavaliadorcredito.exceptions.ErroSolicitacaoCartaoException;
 import io.github.bruno.msavaliadorcredito.exceptions.ErrorMicroserviceException;
+import io.github.bruno.msavaliadorcredito.exceptions.ResponseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,6 +28,13 @@ public class ResponseExceptionHandler {
         ResponseException responseException = new ResponseException(LocalDateTime.now(), ex.getMessage(),
                 request.getDescription(false));
         return ResponseEntity.status(HttpStatus.GATEWAY_TIMEOUT).body(responseException);
+    }
+
+    @ExceptionHandler(ErroSolicitacaoCartaoException.class)
+    public ResponseEntity<ResponseException> errorRequestingCard(ErroSolicitacaoCartaoException ex, WebRequest request) {
+        ResponseException responseException = new ResponseException(LocalDateTime.now(), ex.getMessage(),
+                request.getDescription(false));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseException);
     }
 
     @ExceptionHandler(Exception.class)

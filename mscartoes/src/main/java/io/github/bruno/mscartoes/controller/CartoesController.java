@@ -6,6 +6,8 @@ import io.github.bruno.mscartoes.entity.CartaoCliente;
 import io.github.bruno.mscartoes.entity.CartaoEntity;
 import io.github.bruno.mscartoes.service.CartaoClienteService;
 import io.github.bruno.mscartoes.service.CartaoService;
+import io.github.bruno.mscartoes.service.ConsumerMQService;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +26,21 @@ public class CartoesController {
     @Autowired
     private CartaoClienteService cartaoClienteService;
 
+    @Autowired
+    private ConsumerMQService consumerMQService;
+
     @GetMapping()
     public String status() {
         return "ok";
     }
 
+    @RabbitListener(queues = "emissao-cartoes")
+    public void consumer(String dados) {
+        consumerMQService.consumerDadosDaFila(dados);
+    }
+
     @PostMapping
-    public ResponseEntity cadastrar(@RequestBody CartaoDto cartaoDto) {
+    public ResponseEntity<String> cadastrar(@RequestBody CartaoDto cartaoDto) {
         CartaoEntity cartao = CartaoDto.toModel(cartaoDto);
         cartaoService.salvarCartao(cartao);
         return ResponseEntity.status(HttpStatus.CREATED).build();

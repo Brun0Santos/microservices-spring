@@ -8,6 +8,7 @@ import io.github.bruno.msavaliadorcredito.dto.CartaoAprovadoDto;
 import io.github.bruno.msavaliadorcredito.dto.RetornoAvaliacaoDto;
 import io.github.bruno.msavaliadorcredito.entities.*;
 import io.github.bruno.msavaliadorcredito.exceptions.DataNotFoundException;
+import io.github.bruno.msavaliadorcredito.exceptions.ErroSolicitacaoCartaoException;
 import io.github.bruno.msavaliadorcredito.exceptions.ErrorMicroserviceException;
 import io.github.bruno.msavaliadorcredito.util.LimiteCalculoUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -68,6 +69,7 @@ public class AvaliadorCreditoService {
             return new ProtocoloCartao(UUID.randomUUID().toString());
         } catch (Exception ex) {
             log.info(ex.getMessage());
+            throw new ErroSolicitacaoCartaoException();
         }
     }
 }
